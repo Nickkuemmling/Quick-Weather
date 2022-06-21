@@ -1,19 +1,138 @@
-.App {
-  text-align: center;
-}
+@import url('https://fonts.googleapis.com/css2?family=Julius+Sans+One&family=Playfair+Display:ital,wght@1,700&display=swap');
 
 html {
-  background-image: url('./assets/mountains1.jpg');
+  text-align: center;
+  font-size: 125%;
+}
+
+.startingBackground {
+  background-image: url('./assets/star.jpg');
   background-position: top center;
   background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+
+}
+
+.clearSky {
+  background-image: url('./assets/clearSky1.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.overcast {
+  background-image: url('./assets/overCastClouds.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.scattered {
+  background-image: url('./assets/scatteredClouds.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.broken {
+  background-image: url('./assets/brokenClouds.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.few {
+  background-image: url('./assets/fewClouds.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.lightRain {
+  background-image: url('./assets/backupRainy.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.moderateRain {
+  background-image: url('./assets/morerainy.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.heavyRain {
+  background-image: url('./assets/heavyrain.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.haze {
+  background-image: url('./assets/haze.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.thunderstorm {
+  background-image: url('./assets/thunderstorm1.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+.mist {
+  background-image: url('./assets/haze.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  height: 100vh;
+  background-size: cover;
+}
+
+
+
+h1, h2 {
+  color: white;
+  font-family: 'Julius Sans One', sans-serif;
 }
 
 h1 {
-  color: white;
+  margin-bottom: 12px;
+  margin-top: 0;
+  font-size: 3.2rem;  
+}
+
+h2 {
+  font-size: 2rem;  
 }
 
 p {
   color: white;
+}
+
+.degreesC {
+  display: flex;
+  align-self: center;
+}
+
+.formText {
+  font-style: italic;
+  font-size: 0.7rem;
+  margin: 5px;
+  font-weight: 600;
 }
 
 input {
@@ -21,4 +140,13 @@ input {
   outline: none;
   padding: 5px;
   border-radius: 8px;
+  font-family:Arial, Helvetica, sans-serif;
+  font-weight: 600;
 }
+
+.mainData {
+  display: flex;
+  gap: 3%;
+  justify-content: center;
+}
+

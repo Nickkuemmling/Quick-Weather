@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import axios from 'axios';
 import Weather from './components/Weather';
 
@@ -8,55 +8,79 @@ function App() {
 
     const [weatherData, setWeatherData] = useState({})
     const [location, setLocation] = useState('')
+    const [backgroundImg, setBackgroundImg] = useState("startingBackground")
 
-    const URL = `https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=f34f5d327930221bb372de18e344644a`
+//API CALL
 
-    // useEffect( () => {
-    const callWeather = (event) => {
+    const CallWeather = (event) => {
+
       if (event.key === 'Enter') {
-      axios.get(URL)
+
+      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=f34f5d327930221bb372de18e344644a`)
       .then((res) => {
         console.log(res.data)
         setWeatherData(res.data)
+
+//CHANGING BACKGROUND
+
+        if (res.data.weather[0].description === "clear sky") {
+          setBackgroundImg("clearSky")
+
+        }else if (res.data.weather[0].description === "overcast clouds") {setBackgroundImg("overcast")
+
+        }else if (res.data.weather[0].description === "scattered clouds") {setBackgroundImg("scattered")
+          
+        }else if (res.data.weather[0].description === "broken clouds") {setBackgroundImg("broken")
+          
+        }else if (res.data.weather[0].description === "few clouds") {setBackgroundImg("few")
+          
+        }else if (res.data.weather[0].description === "light rain" || res.data.weather[0].description === "light intensity drizzle") {setBackgroundImg("lightRain")
+
+        }else if (res.data.weather[0].description === "moderate rain") {setBackgroundImg("moderateRain")
+
+        }else if (res.data.weather[0].description === "heavy rain") {setBackgroundImg("heavyRain")
+
+        }else if (res.data.weather[0].description === "thunderstorm") {setBackgroundImg("thunderstorm")
+
+      }else if (res.data.weather[0].description === "mist" || res.data.weather[0].description === "haze") {setBackgroundImg("mist")}
+
+//-----------------------------------------
+
+// ERROR CATCH AND DISPLAY WEATHER INFO
       }).catch(error => {
         console.log(error)
+        alert("City does not exist.")
       })
       setLocation('')
     }
   }
-// }, []);
-
-
-
-
 
   return (
-    <div className="App">
 
-      <main>
-        <div className="wrapper">
+        <div className={backgroundImg}>
+
+          <Header location={weatherData.name} />
           
-          <Header />
-
           <input
             value={location}
             onChange={event => setLocation(event.target.value)}
-            onKeyPress={callWeather}
-            placeholder='Enter Location'
+            onKeyPress={CallWeather}
+            placeholder='Pick a City'
             type="text"
           ></input>
 
-          <div className='weatherNumbers'>
-            {weatherData.weather ? <Weather 
-            main={weatherData.weather[0].main} 
-            feels={weatherData.main.feels_like} 
-            humid={weatherData.main.humidity} 
-            wind={weatherData.wind.speed}/> : null}
-          </div>
+          <p className='formText'>(then hit enter)</p>
 
-        </div>
-      </main>
-    </div>
+          <div className='weatherNumbers'>
+            {weatherData.weather ? <Weather
+              main={weatherData.weather[0].description}
+              feels={weatherData.main.feels_like}
+              humid={weatherData.main.humidity}
+              wind={weatherData.wind.speed} /> : null}
+          </div>
+</div>
+
   );
 }
+
 export default App;

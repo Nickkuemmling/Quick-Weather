@@ -1,8 +1,9 @@
 import './App.css';
 import Header from './components/Header';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 import Weather from './components/Weather';
+import WeatherDescription from './components/WeatherDescription';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
 //CHANGING BACKGROUND
 
         if (res.data.weather[0].description === "clear sky") {
-          setBackgroundImg("clearSky")
+          setBackgroundImg(`clearSky${Math.floor(Math.random() * 5)}`)
 
         }else if (res.data.weather[0].description === "overcast clouds") {setBackgroundImg("overcast")
 
@@ -34,11 +35,11 @@ function App() {
           
         }else if (res.data.weather[0].description === "few clouds") {setBackgroundImg("few")
           
-        }else if (res.data.weather[0].description === "light rain" || res.data.weather[0].description === "light intensity drizzle") {setBackgroundImg("lightRain")
+        }else if (res.data.weather[0].description === "light rain" || "light intensity drizzle") {setBackgroundImg(`lightRain${Math.floor(Math.random() * 2)}`)
 
         }else if (res.data.weather[0].description === "moderate rain") {setBackgroundImg("moderateRain")
 
-        }else if (res.data.weather[0].description === "heavy rain") {setBackgroundImg("heavyRain")
+        }else if (res.data.weather[0].description === "heavy rain" || "heavy intensity rain") {setBackgroundImg("heavyRain")
 
         }else if (res.data.weather[0].description === "thunderstorm") {setBackgroundImg("thunderstorm")
 
@@ -56,29 +57,42 @@ function App() {
   }
 
   return (
+    <body className={backgroundImg}>
+      <main>
 
-        <div className={backgroundImg}>
+        <nav>
+          <a className='hover-underline-animation' href="https://nickkuemmling.com/">Check out my portfolio</a>
+        </nav>
 
-          <Header location={weatherData.name} />
-          
+        <div className='wrapper'>
+
+          <Header />
+
+          {weatherData.weather ? <WeatherDescription main={weatherData.weather[0].description} location={weatherData.name} /> : null}
+
+          {backgroundImg === "startingBackground" ? <h2>Pick a city <br />then hit enter</h2> : null}
+
           <input
             value={location}
             onChange={event => setLocation(event.target.value)}
             onKeyPress={CallWeather}
-            placeholder='Pick a City'
+            placeholder='City Name'
             type="text"
           ></input>
 
-          <p className='formText'>(then hit enter)</p>
-
           <div className='weatherNumbers'>
             {weatherData.weather ? <Weather
-              main={weatherData.weather[0].description}
               feels={weatherData.main.feels_like}
               humid={weatherData.main.humidity}
               wind={weatherData.wind.speed} /> : null}
           </div>
-</div>
+        </div>
+
+      </main>
+        <footer>
+          <a href="https://junocollege.com/">Built at Juno College 2022</a>
+        </footer>
+    </body>
 
   );
 }

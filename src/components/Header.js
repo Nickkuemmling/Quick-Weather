@@ -2,9 +2,8 @@
 const Header = (props) => {
     return(
         <div>
-            <br></br>
-            <h1>QuickWeather</h1>
-            <h2>{props.location}</h2>
+            <h1>Quick Weather</h1>
+            <hr></hr>
         </div>
     )
 }

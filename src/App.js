@@ -90,7 +90,7 @@ function App() {
 
       </main>
         <footer>
-          <a href="https://junocollege.com/">Built at Juno College 2022</a>
+          <a href="https://junocollege.com/">Built by Nick Kuemmling at Juno College 2022</a>
         </footer>
     </body>
 

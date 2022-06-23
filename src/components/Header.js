@@ -1,10 +1,10 @@
 
 const Header = (props) => {
     return(
-        <div>
+        <header>
             <h1>Quick Weather</h1>
             <hr></hr>
-        </div>
+        </header>
     )
 }
 

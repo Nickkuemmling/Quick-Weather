@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import {useState} from 'react';
+import {useEffect, useState} from 'react';
 import axios from 'axios';
 import Weather from './components/Weather';
 import WeatherDescription from './components/WeatherDescription';
@@ -15,15 +15,21 @@ function App() {
 
     const CallWeather = (event) => {
 
-      if (event.key === 'Enter') {
-
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=f34f5d327930221bb372de18e344644a`)
-      .then((res) => {
-        console.log(res.data)
-        setWeatherData(res.data)
-
-//CHANGING BACKGROUND
-
+        if (event.key === 'Enter') {
+          axios({
+            url: `https://api.openweathermap.org/data/2.5/weather/`,
+            params: {
+              q: `${location}`,
+              units: `metric`,
+              appid: `f34f5d327930221bb372de18e344644a`,
+            }
+          })
+          .then((res) => {
+            console.log(res.data)
+            setWeatherData(res.data)
+            
+            //CHANGING BACKGROUND
+            
         if (res.data.weather[0].description === "clear sky") {
           setBackgroundImg(`clearSky${Math.floor(Math.random() * 5)}`)
 
@@ -35,7 +41,7 @@ function App() {
           
         }else if (res.data.weather[0].description === "few clouds") {setBackgroundImg("few")
           
-        }else if (res.data.weather[0].description === "light rain" || "light intensity drizzle") {setBackgroundImg(`lightRain${Math.floor(Math.random() * 2)}`)
+        }else if (res.data.weather[0].description === "light rain" || "light intensity drizzle") {setBackgroundImg(`lightRain${Math.floor(Math.random() * 1)}`)
 
         }else if (res.data.weather[0].description === "moderate rain") {setBackgroundImg("moderateRain")
 
@@ -55,6 +61,7 @@ function App() {
       setLocation('')
     }
   }
+  
 
   return (
     <body className={backgroundImg}>

@@ -1,6 +1,6 @@
 import './App.css';
 import Header from './components/Header';
-import {useEffect, useState} from 'react';
+import {useState} from 'react';
 import axios from 'axios';
 import Weather from './components/Weather';
 import WeatherDescription from './components/WeatherDescription';
@@ -41,7 +41,7 @@ function App() {
           
         }else if (res.data.weather[0].description === "few clouds") {setBackgroundImg("few")
           
-        }else if (res.data.weather[0].description === "light rain" || "light intensity drizzle") {setBackgroundImg(`lightRain${Math.floor(Math.random() * 1)}`)
+        }else if (res.data.weather[0].description === "light rain" || "light intensity drizzle") {setBackgroundImg(`lightRain${Math.floor(Math.random() * 2)}`)
 
         }else if (res.data.weather[0].description === "moderate rain") {setBackgroundImg("moderateRain")
 

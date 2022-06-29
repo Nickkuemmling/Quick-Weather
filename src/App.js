@@ -15,15 +15,21 @@ function App() {
 
     const CallWeather = (event) => {
 
-      if (event.key === 'Enter') {
-
-      axios.get(`https://api.openweathermap.org/data/2.5/weather?q=${location}&units=metric&appid=f34f5d327930221bb372de18e344644a`)
-      .then((res) => {
-        console.log(res.data)
-        setWeatherData(res.data)
-
-//CHANGING BACKGROUND
-
+        if (event.key === 'Enter') {
+          axios({
+            url: `https://api.openweathermap.org/data/2.5/weather/`,
+            params: {
+              q: `${location}`,
+              units: `metric`,
+              appid: `f34f5d327930221bb372de18e344644a`,
+            }
+          })
+          .then((res) => {
+            console.log(res.data)
+            setWeatherData(res.data)
+            
+            //CHANGING BACKGROUND
+            
         if (res.data.weather[0].description === "clear sky") {
           setBackgroundImg(`clearSky${Math.floor(Math.random() * 5)}`)
 
@@ -55,6 +61,7 @@ function App() {
       setLocation('')
     }
   }
+  
 
   return (
     <body className={backgroundImg}>
